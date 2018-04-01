@@ -34,7 +34,7 @@ DT <- rbindlist(df)
 DT[, datetime := as.POSIXct( DT$datetime*24*3600 + as.POSIXct("1899-12-30 00:00", 
                                                 tz="Etc/GMT-2"), tz="Etc/GMT-1")]
 
-#add dare column
+#add date column
 DT[, date := as.Date(DT$datetime, tz="Etc/GMT-1", format= "%d-%m-%Y")]
 DT[, value := gsub("[^0-9]", "", DT$value)]
 DT[, value := as.numeric(DT$value)]
@@ -88,7 +88,7 @@ minsr[, min:= apply(minsr[,1:3], 1, which.min)]
 minsr[, time:=sP3$datetime]
 print(minsr)
 
-
+### methods for visualization & estimation as per https://petolau.github.io/Forecast-electricity-consumption-with-similar-day-approach-in-R/ 
 ### Additional methods for estimation
 # ## STL + EXP
 # stlEXPPred <- function(Y, period = 48){
